@@ -30,7 +30,7 @@ public class HomeController {
     }
 
 
-    @RequestMapping("{/updateDirector/{id}")
+    @RequestMapping("/updateDirector/{id}")
     public  String updateDirector(Model model , @PathVariable("id") long id){
         model.addAttribute("director" ,directorRepository.findById(id).get());
         return "addDirectors";

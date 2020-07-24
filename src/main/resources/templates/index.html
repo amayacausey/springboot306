@@ -1,35 +1,85 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th=”http://www.thymeleaf.org”>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="DirectorDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Director
+                        <div class="dropdown-menu" aria-labelledby="DirectorDropdown">
+                            <a class="dropdown-item" th:href="@{/addDirectors}">Add Directors </a>
+                            <a class="dropdown-item" th:href="@{/detailsDirectors}">Director Details </a>
+
+                        </div>
+                    </a>
+                <li><a class="nav-link dropdown-toggle" href="#" id="MovieDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Movie
+                    <div class="dropdown-menu" aria-labelledby="MovieDropdown">
+                        <a class="dropdown-item" th:href="@{/addMovies}">Add Movies</a>
+                        <a class="dropdown-item" th:href="@{/detailsMovies}">Movie Details</a>
+                    </div>
+                </a>
+            </ul>
+        </div>
+    </nav>
+
+
 <h1>Directors List</h1>
-<div th:each="director : ${directors} ">
+<div th:each="director : ${directors} "><br>
 <h2 th:text="${director.name}"></h2>
 <h6 th:inline="text">specializing in [[${director.genre}]]</h6>
     <ul>
-        <a th:href="@{/addDirectors}">Add Directors</a>
-        <a th:href="@{/addMovies}">Add Movie</a>
-        <a th:href="@{/deleteDirectors/{id}(id=${director.id})}">Delete Director</a>
-        <a th:href="@{/detailsDirectors}">Details(Directors)</a>
-        <a th:href="@{/detailsMovies}">Details(Movies)</a>
-        <a th:href="@{/updateDirector/{id}(id=${director.id})}">Update Director</a>
+<!--        <a th:href="@{/addDirectors}">Add Directors</a>-->
+<!--        <a th:href="@{/addMovies}">Add Movie</a>-->
+        <button type="button" class="btn btn-danger">Delete Director<a th:href="@{/deleteDirectors/{id}(id=${director.id})}"></a></button>
+<!--        <a th:href="@{/detailsDirectors}">Details(Directors)</a>-->
+<!--        <a th:href="@{/detailsMovies}">Details(Movies)</a>-->
+        <button type="button" class="btn btn-secondary">Update Director<a th:href="@{/updateDirector/{id}(id=${director.id})}"></a></button>
 
-
+<br><br><h5>Directed Movies</h5>
     <th:block th:each="movie: ${director.movies}">
         <li th:inline="text"><b>[[${movie.title}]]</b> released in [[${movie.year}]]</li>
-        <a th:href="@{/deleteMovie/{id}(id=${movie.id})}">Delete</a>
-        <a th:href="@{/updateMovie/{id}(id=${movie.id})}">Update(Movies)</a>
+        <button type="button" class="btn btn-outline-danger">Delete<a th:href="@{/deleteMovie/{id}(id=${movie.id})}"></a></button>
+        <button type="button" class="btn btn-outline-secondary">Update<a th:href="@{/updateMovie/{id}(id=${movie.id})}"></a></button>
 
     <br>
     </th:block>
+
+
 <!--        <th:block th:each="director: ${director}">-->
 <!--            <li th:inline="text">Director: <b>[[${director.name}]]</b></li>-->
 <!--        </th:block>-->
 
 </ul>
 </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 </html>
