@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Directors List</h1>
+<div th:each="director : ${directors} ">
+<h2 th:text="${director.name}"></h2>
+<h6 th:inline="text">specializing in [[${director.genre}]]</h6>
+    <ul>
+        <a th:href="@{/addDirectors}">Add Directors</a>
+        <a th:href="@{/addMovies}">Add Movie</a>
+        <a th:href="@{/deleteDirectors/{id}(id=${director.id})}">Delete Director</a>
+        <a th:href="@{/detailsDirectors}">Details(Directors)</a>
+        <a th:href="@{/detailsMovies}">Details(Movies)</a>
+        <a th:href="@{/updateDirector/{id}(id=${director.id})}">Update Director</a>
+
+
+    <th:block th:each="movie: ${director.movies}">
+        <li th:inline="text"><b>[[${movie.title}]]</b> released in [[${movie.year}]]</li>
+        <a th:href="@{/deleteMovie/{id}(id=${movie.id})}">Delete</a>
+        <a th:href="@{/updateMovie/{id}(id=${movie.id})}">Update(Movies)</a>
+
+    <br>
+    </th:block>
+<!--        <th:block th:each="director: ${director}">-->
+<!--            <li th:inline="text">Director: <b>[[${director.name}]]</b></li>-->
+<!--        </th:block>-->
+
+</ul>
+</div>
+</body>
+</html>
