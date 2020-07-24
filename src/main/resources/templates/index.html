@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav th:fragment="navbar"  class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,6 @@
                         Director
                         <div class="dropdown-menu" aria-labelledby="DirectorDropdown">
                             <a class="dropdown-item" th:href="@{/addDirectors}">Add Directors </a>
-                            <a class="dropdown-item" th:href="@{/detailsDirectors}">Director Details </a>
 
                         </div>
                     </a>
@@ -33,7 +32,6 @@
                     Movie
                     <div class="dropdown-menu" aria-labelledby="MovieDropdown">
                         <a class="dropdown-item" th:href="@{/addMovies}">Add Movies</a>
-                        <a class="dropdown-item" th:href="@{/detailsMovies}">Movie Details</a>
                     </div>
                 </a>
             </ul>
@@ -48,16 +46,18 @@
     <ul>
 <!--        <a th:href="@{/addDirectors}">Add Directors</a>-->
 <!--        <a th:href="@{/addMovies}">Add Movie</a>-->
-        <button type="button" class="btn btn-danger">Delete Director<a th:href="@{/deleteDirectors/{id}(id=${director.id})}"></a></button>
+        <a th:href="@{/deleteDirectors/{id}(id=${director.id})}"><button type="button" class="btn btn-danger">Delete Director</button></a>
 <!--        <a th:href="@{/detailsDirectors}">Details(Directors)</a>-->
 <!--        <a th:href="@{/detailsMovies}">Details(Movies)</a>-->
-        <button type="button" class="btn btn-secondary">Update Director<a th:href="@{/updateDirector/{id}(id=${director.id})}"></a></button>
+        <a th:href="@{/updateDirector/{id}(id=${director.id})}"><button type="button" class="btn btn-secondary">Update Director</button></a>
+        <a th:href="@{/detailsDirectors/{id}(id=${director.id})}"><button type="button" class="btn btn-secondary">Details Director</button></a>
 
 <br><br><h5>Directed Movies</h5>
     <th:block th:each="movie: ${director.movies}">
         <li th:inline="text"><b>[[${movie.title}]]</b> released in [[${movie.year}]]</li>
-        <button type="button" class="btn btn-outline-danger">Delete<a th:href="@{/deleteMovie/{id}(id=${movie.id})}"></a></button>
-        <button type="button" class="btn btn-outline-secondary">Update<a th:href="@{/updateMovie/{id}(id=${movie.id})}"></a></button>
+        <a th:href="@{/deleteMovie/{id}(id=${movie.id})}"> <button type="button" class="btn btn-outline-danger">Delete</button></a>
+        <a th:href="@{/updateMovie/{id}(id=${movie.id})}"><button type="button" class="btn btn-outline-secondary">Update</button></a>
+        <a th:href="@{/detailsMovies/{id}(id=${movie.id})}"><button type="button" class="btn btn-outline-secondary">Details</button></a>
 
     <br>
     </th:block>

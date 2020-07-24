@@ -8,6 +8,7 @@
     <title>addMovies</title>
 </head>
 <body>
+<nav th:replace="index::navbar"></nav>
 <form th:action="@{/processMovie}" th:object="${movie}" method="post">
     <input type="hidden" th:field="*{id}"/>
     Title : <input type="text" th:field="*{title}"><br>

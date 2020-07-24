@@ -8,11 +8,17 @@
     <title></title>
 </head>
 <body>
-<h6>Directors Details</h6>
-<div th:each="director : ${directors} ">
-    <h4 th:text="${director.name}"></h4>
-    <h6 th:inline="text">specializing in [[${director.genre}]]</h6>
-    <div th:each="movie : ${director.movies}">[[${movie.title}]]</div>
+<nav th:replace="index::navbar"></nav>
+<h6>Director Details</h6>
+<p th:inline="text">
+    Name:[[${director.name}]]<br>
+    Genre:[[${director.genre}]]<br>
+</p>
+<h5>Movies Directed</h5>
+<div th:each="movied :${director.movies}">
+    <br>Movie : [[${movied.title}]]
+    Year : [[${movied.year}]]<br>
+    Description: [[${movied.description}]]<br>
 </div>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

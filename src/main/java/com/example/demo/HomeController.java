@@ -66,16 +66,14 @@ public class HomeController {
         return "addMovies";
     }
 
-
-
-
-    @RequestMapping("/detailsDirectors")
-    public String detailsDirectors(Model model) {
-        model.addAttribute("directors",directorRepository.findAll());
+    @RequestMapping("/detailsDirectors/{id}")
+    public String detailsDirectors(Model model, @PathVariable("id")long id) {
+        model.addAttribute("director",directorRepository.findById(id).get());
         return "detailsDirectors";
     }
-    @RequestMapping("/detailsMovies")
-    public String detailsMovies(Model model) {
+    @RequestMapping("/detailsMovies/{id}")
+    public String detailsMovies(Model model,@PathVariable("id")long id) {
+        model.addAttribute("movie",movieRepository.findById(id).get());
         model.addAttribute("directors",directorRepository.findAll());
         return "detailsMovies";
 
